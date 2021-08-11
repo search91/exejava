@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<properties>
+		<property name="logPath">.</property>
+		<Property name="defaultLayout">[%-5p]%d{yyyy-MM-dd HH:mm:ss,SSS}, [%t] %c{1}:%L - %msg%n</Property>
+									<!-- %d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" -->
+	</properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT" >
+			<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="${defaultLayout}"/>
+		</Console>
+
+		<File name="LogFile" filename="${logPath}/test.log" >
+			<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="${defaultLayout}"/>
+		</File>
+
+		<RollingFile name="RollingFile" filename="${logPath}/check.log"
+			filepattern="${logPath}/check_%i.log">
+			<ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="${defaultLayout}"/>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+
+	</Appenders>
+	<Loggers>
+	<!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+	<logger name="org.springframework" level="INFO"></logger>
+	<logger name="org.ibatis" level="INFO"></logger>
+		<Root level="trace">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="LogFile" />
+			<AppenderRef ref="RollingFile" />
+		</Root>
+	</Loggers>
+</Configuration>

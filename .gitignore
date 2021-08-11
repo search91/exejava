@@ -1,0 +1,9 @@
+.idea
+*.iml
+classes
+maRule.jar
+out
+src/com/netease/is/Main.java
+log
+.ant-targets-build.xml
+/target/
