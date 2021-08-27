@@ -16,7 +16,7 @@ public class AddBinary {
         StringBuilder sb = new StringBuilder();
         int alen = a.length();
         int blen = b.length();
-        int maxlen = alen < blen ? blen : alen;
+        int maxlen = Math.max(alen, blen);
         int add = 0;
         for (int i = 1; i <= maxlen; i++) {
             int n = 0, m = 0;
