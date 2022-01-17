@@ -18,8 +18,7 @@ import java.util.Map;
  *
  * 进阶：你是否可以在 O(1) 时间复杂度内完成这两种操作？
  * 
- * 不会做，利用双向链表，直接看答案了
- * https://leetcode-cn.com/problems/lru-cache/solution/lruhuan-cun-ji-zhi-by-leetcode-solution/
+ * 不会做，利用双向链表，直接看答案了 https://leetcode-cn.com/problems/lru-cache/solution/lruhuan-cun-ji-zhi-by-leetcode-solution/
  *
  * @author hzliuzhujie
  * @date 2021-11-03
@@ -40,7 +39,7 @@ public class LRUCache {
         }
     }
 
-    private Map<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
+    private Map<Integer, DLinkedNode> cache = new HashMap<>();
     private int size;
     private int capacity;
     private DLinkedNode head, tail;

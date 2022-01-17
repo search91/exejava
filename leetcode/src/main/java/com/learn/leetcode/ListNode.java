@@ -16,7 +16,7 @@ public class ListNode {
         this.val = val;
     }
 
-    ListNode(int val, ListNode next) {
+    public ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
     }
@@ -31,7 +31,7 @@ public class ListNode {
         return root.next;
     }
 
-    public static ListNode buildListNode(  int[] list) {
+    public static ListNode buildListNode(int[] list) {
         ListNode root = new ListNode(-1);
         ListNode current = root;
         for (int val : list) {

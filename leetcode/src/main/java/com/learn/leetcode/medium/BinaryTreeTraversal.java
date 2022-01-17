@@ -74,24 +74,6 @@ public class BinaryTreeTraversal {
         return list;
     }
 
-    // 先序非递归版本2
-    public List<Integer> preorderTraversal3(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        Deque<TreeNode> stack = new ArrayDeque<>();
-        TreeNode node = root;
-        while (node != null || !stack.isEmpty()) {
-            if (node != null) {
-                stack.push(node);
-                list.add(node.val);
-                node = node.left;
-            } else {
-                node = stack.pop();
-                node = node.right;
-            }
-        }
-        return list;
-    }
-
     // 中序非递归版本1
     public List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> list = new ArrayList<>();
@@ -121,24 +103,6 @@ public class BinaryTreeTraversal {
         return list;
     }
 
-    // 中序非递归版本2
-    public List<Integer> inorderTraversal3(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        Deque<TreeNode> stack = new ArrayDeque<>();
-        TreeNode node = root;
-        while (node != null || !stack.isEmpty()) {
-            if (node != null) {
-                stack.push(node);
-                node = node.left;
-            } else {
-                node = stack.pop();
-                list.add(node.val);
-                node = node.right;
-            }
-        }
-        return list;
-    }
-
     // 后序非递归版本1
     public List<Integer> postorderTraversal2(TreeNode root) {
         List<Integer> list = new ArrayList<>();
@@ -155,7 +119,7 @@ public class BinaryTreeTraversal {
                 list.add(root.val);
                 map.put(root, 1);
             } else if ((root.left != null && root.right == null && map.containsKey(root.left))
-                || (root.right != null && root.left == null && map.containsKey(root.right)) || (root.left != null
+                    || (root.right != null && root.left == null && map.containsKey(root.right)) || (root.left != null
                     && root.right != null && map.containsKey(root.left) && map.containsKey(root.right))) {// 包含子节点，但是子节点被访问过，出栈
                 root = stack.pop();
                 list.add(root.val);
@@ -174,6 +138,44 @@ public class BinaryTreeTraversal {
                     }
                     stack.push(root.right);
                 }
+            }
+        }
+        return list;
+    }
+
+    // 先序非递归版本2
+    public List<Integer> preorderTraversal3(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode node = root;
+        while (node != null || !stack.isEmpty()) {
+            if (node != null) {
+                // 插入到头
+                stack.push(node);
+                list.add(node.val);
+                node = node.left;
+            } else {
+                // 从头取，其实是先进后出
+                node = stack.pop();
+                node = node.right;
+            }
+        }
+        return list;
+    }
+
+    // 中序非递归版本2
+    public List<Integer> inorderTraversal3(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode node = root;
+        while (node != null || !stack.isEmpty()) {
+            if (node != null) {
+                stack.push(node);
+                node = node.left;
+            } else {
+                node = stack.pop();
+                list.add(node.val);
+                node = node.right;
             }
         }
         return list;

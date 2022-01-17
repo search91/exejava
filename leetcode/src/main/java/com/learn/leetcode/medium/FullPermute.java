@@ -1,24 +1,12 @@
 package com.learn.leetcode.medium;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
- * 46. 全排列
- * 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
- * 示例:
- * 输入: [1,2,3]
- * 输出:
- * [
- * [1,2,3],
- * [1,3,2],
- * [2,1,3],
- * [2,3,1],
- * [3,1,2],
- * [3,2,1]
- * ]
+ * 46. 全排列 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
+ *
+ * 字节面到
  *
  * @author hzliuzhujie
  * @date 2021-05-07
@@ -26,31 +14,49 @@ import java.util.List;
 public class FullPermute {
 
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-
-        List<Integer> output = new ArrayList<Integer>();
-        for (int num : nums) {
-            output.add(num);
+        List<List<Integer>> res = new ArrayList<>();
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            List<Integer> tmp = new ArrayList<>();
+            tmp.add(i);
+            res.add(tmp);
         }
 
-        int n = nums.length;
-        backtrack(n, output, res, 0);
+        for (int i = 0; i < n - 1; i++) {
+            res = dfs(res, n);
+        }
+
+        return convertIndex2Num(res, nums);
+    }
+
+    private List<List<Integer>> convertIndex2Num(List<List<Integer>> res, int[] nums) {
+        for (List<Integer> single : res) {
+            int num = single.size();
+            for (int i = 0; i < num; i++) {
+                single.set(i, nums[single.get(i)]);
+            }
+        }
         return res;
     }
 
-    public void backtrack(int n, List<Integer> output, List<List<Integer>> res, int first) {
-        // 所有数都填完了
-        if (first == n) {
-            res.add(new ArrayList<Integer>(output));
+    private List<List<Integer>> dfs(List<List<Integer>> origin, int n) {
+        List<List<Integer>> res = new ArrayList<>();
+        for (List<Integer> single : origin) {
+            for (int i = 0; i < n; i++) {
+                if (!single.contains(i)) {
+                    List<Integer> tmp = new ArrayList<>(single);
+                    tmp.add(i);
+                    res.add(tmp);
+                }
+            }
         }
-        for (int i = first; i < n; i++) {
-            // 动态维护数组
-            Collections.swap(output, first, i);
-            // 继续递归填下一个数
-            backtrack(n, output, res, first + 1);
-            // 撤销操作
-            Collections.swap(output, first, i);
-        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new FullPermute().permute(new int[] {1}));
+        System.out.println(new FullPermute().permute(new int[] {0, 1}));
+        System.out.println(new FullPermute().permute(new int[] {1, 2, 3}));
     }
 
 }
