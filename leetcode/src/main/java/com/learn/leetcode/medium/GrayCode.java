@@ -22,7 +22,7 @@ import java.util.List;
 public class GrayCode {
 
     public List<Integer> grayCode(int n) {
-        List<Integer> gray = new ArrayList<Integer>();
+        List<Integer> gray = new ArrayList<>();
         gray.add(0); // 初始化 n = 0 的解
         for (int i = 0; i < n; i++) {
             // 要加的数

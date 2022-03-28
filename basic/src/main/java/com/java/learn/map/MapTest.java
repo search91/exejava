@@ -4,7 +4,6 @@
 package com.java.learn.map;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -6,4 +6,4 @@ out
 src/com/netease/is/Main.java
 log
 .ant-targets-build.xml
-/target/
+*/target

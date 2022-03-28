@@ -65,6 +65,6 @@ public class BinaryTreeTraversalTest {
 
     @Test
     public void levelOrder() {
-        System.out.println(new BinaryTreeTraversal().levelOrder(treeNode));
+        System.out.println(new BinaryTreeTraversal().levelOrder1(treeNode));
     }
 }

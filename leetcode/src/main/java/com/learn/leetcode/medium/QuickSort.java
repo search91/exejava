@@ -31,14 +31,18 @@ public class QuickSort {
             }
 
             if (left < right) {
-                int tmp = array[left];
-                array[left] = array[right];
-                array[right] = tmp;
+                swap(array, left, right);
             }
         }
         array[originLeft] = array[left];
         array[left] = first;
         return left;
+    }
+
+    private void swap(int[] array, int left, int right) {
+        int tmp = array[left];
+        array[left] = array[right];
+        array[right] = tmp;
     }
 
     public static void main(String[] args) {

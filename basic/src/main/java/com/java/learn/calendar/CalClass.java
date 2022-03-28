@@ -11,7 +11,6 @@ import java.util.Set;
 public class CalClass {
 	public void passPara(Set<String> cc){
 		cc.add("LZJ");
-		
 	}
 
 	

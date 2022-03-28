@@ -18,7 +18,7 @@ public class MySqrt {
         }
         long left = 1;
         long right = x;
-        long middle = left;
+        long middle;
         long k = 1;
         while (left <= right) {
             middle = (left + right) / 2;

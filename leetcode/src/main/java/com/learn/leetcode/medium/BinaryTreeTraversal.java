@@ -12,7 +12,7 @@ import java.util.*;
  **/
 public class BinaryTreeTraversal {
 
-    // 先序遍历递归版本
+    // 先序遍历递归版本（深度遍历）
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         if (root == null) {
@@ -231,6 +231,39 @@ public class BinaryTreeTraversal {
             }
         }
         return list;
+    }
+
+    public List<List<Integer>> levelOrder1(TreeNode root) {
+        if (root==null) {
+            return null;
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null);
+        res.add(new ArrayList<>());
+        int level = 0;
+        while (!queue.isEmpty()) {
+            TreeNode take = queue.poll();
+            if (take!=null) {
+                res.get(level).add(take.val);
+                if (take.left != null) {
+                    queue.add(take.left);
+                }
+                if (take.right != null) {
+                    queue.add(take.right);
+                }
+            } else {
+                if (!queue.isEmpty()) {
+                    // 这一层的结束
+                    List<Integer> single1 = new ArrayList<>();
+                    res.add(single1);
+                    level++;
+                    queue.add(null);
+                }
+            }
+        }
+        return res;
     }
 
 }
