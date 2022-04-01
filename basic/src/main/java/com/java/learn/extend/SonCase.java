@@ -5,7 +5,6 @@ public class SonCase extends ParentCase {
     
     @Override
     public String print() {
-        // TODO Auto-generated method stub
         printStr = super.print();
         return printStr;
     }
